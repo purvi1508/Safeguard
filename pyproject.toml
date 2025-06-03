@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 license = {text = "MIT"}
 authors = [
-    {name = "Your Name", email = "you@example.com"}
+    {name = "Purvi Verma", email = "20ce01050@iitbbs.ac.in"}
 ]
 dependencies = [
         "pyyaml==6.0.2",
