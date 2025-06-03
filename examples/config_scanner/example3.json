@@ -1,0 +1,7 @@
+{
+  "api_key": "abcdef123456",
+  "debug": false,
+  "nested": {
+    "secret_token": "tokenvaluehere"
+  }
+}
