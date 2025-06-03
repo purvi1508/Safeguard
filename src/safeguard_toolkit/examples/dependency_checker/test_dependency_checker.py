@@ -1,5 +1,5 @@
 import os
-from safeguard.core.dependency_checker import DependencyChecker
+from safeguard_toolkit.core.dependency_checker import DependencyChecker
 
 def test_dependency_checker():
     base_path = "./examples/dependency_checker"

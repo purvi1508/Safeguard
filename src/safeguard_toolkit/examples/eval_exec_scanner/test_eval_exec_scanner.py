@@ -1,5 +1,5 @@
 import os
-from safeguard.core.eval_exec_scanner import EvalExecScanner
+from safeguard_toolkit.core.eval_exec_scanner import EvalExecScanner
 
 def test_eval_exec_scanner():
     base_path = "./examples/eval_exec_scanner"

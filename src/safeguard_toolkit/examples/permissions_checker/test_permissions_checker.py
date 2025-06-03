@@ -1,5 +1,5 @@
 import os
-from safeguard.core.permissions_checker import PermissionChecker
+from safeguard_toolkit.core.permissions_checker import PermissionChecker
 
 def test_permissions_checker():
     base_path = "./examples/permissions_checker"

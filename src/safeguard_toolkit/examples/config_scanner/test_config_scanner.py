@@ -1,5 +1,5 @@
 import os
-from safeguard.core.config_scanner import ConfigScanner
+from safeguard_toolkit.core.config_scanner import ConfigScanner
 
 def test_config_scanner():
     base_path = "./examples/config_scanner"

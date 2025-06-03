@@ -2,7 +2,7 @@ import os
 import re
 import json
 import yaml
-from safeguard.utils.file_utils import get_files_by_extension , RISKY_CONFIGS, SECRET_PATTERNS
+from safeguard_toolkit.utils.file_utils import get_files_by_extension , RISKY_CONFIGS, SECRET_PATTERNS
 
 class ConfigScanner:
     """

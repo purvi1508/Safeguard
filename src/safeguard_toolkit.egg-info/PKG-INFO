@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: safeguard-toolkit
+Version: 0.1.4
+Summary: A toolkit for scanning configs, secrets, and permissions.
+Author-email: Your Name <you@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/purvi1508/Safeguard
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: pyyaml==6.0.2
+Requires-Dist: requests==2.32.3
+Requires-Dist: packaging==25.0
+Requires-Dist: toml==0.10.2
+Requires-Dist: packaging==25.0
+
+# Safeguard
+Safeguard is a Python toolkit for scanning and analyzing project configurations, dependencies, permissions, and secrets to detect security risks, version conflicts, and sensitive data exposure. It supports multiple file types and generates detailed reports to help maintain secure and compliant codebases.

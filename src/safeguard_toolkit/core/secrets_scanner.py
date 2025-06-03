@@ -3,7 +3,7 @@ import re
 import ast
 import math
 from typing import List
-from safeguard.utils.file_utils import REGEX_PATTERNS
+from safeguard_toolkit.utils.file_utils import REGEX_PATTERNS
 
 class SecretScanner:
     """

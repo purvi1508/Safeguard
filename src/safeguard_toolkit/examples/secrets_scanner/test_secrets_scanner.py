@@ -1,4 +1,4 @@
-from safeguard.core.secrets_scanner import SecretScanner
+from safeguard_toolkit.core.secrets_scanner import SecretScanner
 
 def main():
     base_path = "./examples/secrets_scanner"
