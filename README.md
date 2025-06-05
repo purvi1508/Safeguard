@@ -10,7 +10,6 @@ Safeguard Toolkit is a comprehensive Python package for scanning and analyzing p
 - **Config Scanner:** Scans `.env`, `.yaml`, `.yml`, and `.json` files for risky configurations and potential secrets.
 - **Dependency Checker:** Parses `requirements.txt`, `Pipfile`, and `pyproject.toml` to check for outdated, vulnerable, or license-incompatible dependencies.
 - **Permissions Checker:** Identifies files and directories with unsafe permissions (e.g., world-writable, group-writable, or unreadable by owner).
-- **Eval/Exec Scanner:** Finds dangerous usage of `eval()`, `exec()`, and similar functions in Python code.
 - **Modular Design:** Each scanner can be used independently or as part of a full project scan.
 - **Extensible:** Easily add new scanners or customize existing ones.
 
