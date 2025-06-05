@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "requests": "*",
+    "flask": "==2.2.5",
+    "pytest": "*"
+  },
+  "resolved_versions": {
+    "requests": "2.32.3",
+    "flask": "2.2.5",
+    "pytest": "8.4.0"
+  },
+  "transitive_dependencies": {},
+  "issues": [
+    "Package 'flask' is outdated: 2.2.5 < 3.1.1"
+  ],
+  "licenses": {
+    "requests": "APACHE-2.0",
+    "flask": "",
+    "pytest": "MIT"
+  }
+}

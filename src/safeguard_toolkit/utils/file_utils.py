@@ -1,5 +1,34 @@
 import os, re
-from typing import List
+from typing import List, Dict
+import requests
+import math, ast
+
+PYPI_API_URL = "https://pypi.org/pypi/{package}/json"
+
+def fetch_pypi_metadata(package_name, cache):
+    if package_name in cache:
+        return cache[package_name]
+    try:
+        resp = requests.get(PYPI_API_URL.format(package=package_name), timeout=5)
+        if resp.status_code == 200:
+            data = resp.json()
+            cache[package_name] = data
+            return data
+    except Exception:
+        pass
+    return None
+
+
+def read_lines_from_file(file_path: str) -> List[str]:
+    """
+    Reads a file and returns the lines as a list.
+    Ignores decoding errors gracefully.
+    """
+    try:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+            return f.readlines()
+    except Exception as e:
+        raise IOError(f"Failed to read {file_path}: {e}")
 
 
 def get_files_by_extension(base_path: str, extensions: List[str]) -> List[str]:
@@ -13,12 +42,76 @@ def get_files_by_extension(base_path: str, extensions: List[str]) -> List[str]:
     Returns:
         List[str]: List of matching file paths.
     """
+    exts = set(ext.lower() for ext in extensions)
     matched_files = []
     for root, _, files in os.walk(base_path):
         for file in files:
-            if os.path.splitext(file)[1] in extensions:
+            file_lower = file.lower()
+            if file_lower == ".env":
+                matched_files.append(os.path.join(root, file))
+                continue
+            file_ext = os.path.splitext(file)[1].lower()
+            if file_ext in exts:
                 matched_files.append(os.path.join(root, file))
     return matched_files
+
+def scan_lines_with_regex(lines: List[str], regex_patterns: Dict[str, str], whitelist: List[str]) -> List[dict]:
+    findings = []
+    seen_lines = set()  
+
+    for lineno, line in enumerate(lines, 1):
+        if any(w in line for w in whitelist):
+            continue
+
+        matched_labels = []
+        for label, pattern in regex_patterns.items():
+            if re.search(pattern, line):
+                matched_labels.append(label)
+
+        if matched_labels:
+            key = (lineno, line.strip())
+            if key not in seen_lines:
+                seen_lines.add(key)
+                labels_str = ", ".join(matched_labels)
+                findings.append({
+                    "level": "HIGH",
+                    "types": matched_labels,  
+                    "line": lineno,
+                    "message": f"{labels_str} detected",
+                    "content": line.strip()
+                })
+
+    return findings
+
+def calculate_entropy(data: str) -> float:
+    """
+    Calculate the Shannon entropy of a string.
+    """
+    if not data:
+        return 0.0
+    entropy = 0.0
+    length = len(data)
+    for char in set(data):
+        p_x = data.count(char) / length
+        entropy -= p_x * math.log2(p_x)
+    return entropy
+
+
+def scan_lines_with_entropy(lines: List[str], whitelist: List[str],threshold) -> List[str]:
+    """
+    Scan lines for high-entropy strings.
+    Returns warnings for lines above threshold.
+    """
+    findings = []
+
+    for lineno, line in enumerate(lines, 1):
+        if any(w in line for w in whitelist):
+            continue
+        entropy = calculate_entropy(line)
+        if entropy > threshold:
+            findings.append(f"[MEDIUM] High entropy at line {lineno}: {line.strip()} (Entropy: {entropy:.2f})")
+    return findings
+
 
 RISKY_CONFIGS = {
     "DEBUG": ["true", "1", "yes", "on"],

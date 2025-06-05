@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "requests": "^2.25",
+    "pandas": "^1.3.0"
+  },
+  "resolved_versions": {},
+  "transitive_dependencies": {},
+  "issues": [
+    "Invalid specifier for requests: '^2.25' (Invalid specifier: '^2.25')",
+    "Invalid specifier for pandas: '^1.3.0' (Invalid specifier: '^1.3.0')"
+  ],
+  "licenses": {}
+}

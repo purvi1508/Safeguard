@@ -1,4 +1,0 @@
-This is just a normal text file.
-No secrets here, just some words.
-But what about a password: letmein123?
-Maybe an API key looks like: abcdefghijklmnop
